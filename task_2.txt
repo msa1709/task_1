@@ -1,0 +1,62 @@
+-- Inserting into Customers
+INSERT INTO Customers (customer_id, name, email, phone) VALUES
+(1, 'Aravind M', 'aravind@example.com', '9876543210'),
+(2, 'Sneha R', 'sneha@example.com', NULL),  -- Missing phone
+(3, 'Kiran B', 'kiran@example.com', '9123456780');
+
+-- Inserting into Categories
+INSERT INTO Categories (category_id, category_name) VALUES
+(1, 'Electronics'),
+(2, 'Books'),
+(3, 'Clothing');
+
+-- Inserting into Products
+INSERT INTO Products (product_id, name, price, category_id) VALUES
+(1, 'Smartphone', 20000.00, 1),
+(2, 'Novel - Fiction', 500.00, 2),
+(3, 'T-Shirt', 750.00, 3),
+(4, 'Headphones', NULL, 1);  -- Price not yet updated
+
+-- Inserting into Orders
+INSERT INTO Orders (order_id, customer_id, order_date, total_amount) VALUES
+(101, 1, '2025-06-01', 20750.00),
+(102, 2, '2025-06-02', 500.00),
+(103, 3, '2025-06-03', NULL);  -- Payment pending
+
+-- Inserting into Order_Items
+INSERT INTO Order_Items (order_item_id, order_id, product_id, quantity, price) VALUES
+(1, 101, 1, 1, 20000.00),
+(2, 101, 3, 1, 750.00),
+(3, 102, 2, 1, 500.00);  
+
+
+
+-- Updating price of product with missing price
+UPDATE Products
+SET price = 1500.00
+WHERE product_id = 4;
+
+-- Update missing phone number
+UPDATE Customers
+SET phone = '9000000000'
+WHERE customer_id = 2;
+
+-- Update NULL order total after payment confirmation
+UPDATE Orders
+SET total_amount = 1500.00
+WHERE order_id = 103;
+
+
+
+-- Delete a product (e.g., discontinued item)
+DELETE FROM Products
+WHERE product_id = 3;
+
+-- Delete a customer who requested account deletion
+DELETE FROM Customers
+WHERE customer_id = 3;
+
+-- Delete an order item wrongly added
+DELETE FROM Order_Items
+WHERE order_item_id = 2;
+
